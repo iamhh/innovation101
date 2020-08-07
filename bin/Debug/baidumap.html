@@ -1,0 +1,70 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=BkdNSAhz5ipkOIGKSCGSQGPjpKzM9LcF"></script>
+	<style type="text/css">
+		body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<title>百度地图API调用</title>
+</head>
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">    
+	var map = new BMap.Map("allmap");                     // 创建Map实例
+	var pointA = new BMap.Point(116.295299,40.163661);    // 创建点坐标
+	var pointB = new BMap.Point(116.364594,39.96725);
+ 
+	map.centerAndZoom(pointA, 15);
+	map.enableScrollWheelZoom();                          //启用滚轮放大缩小
+	map.addControl(new BMap.NavigationControl());
+	map.addControl(new BMap.ScaleControl());
+	map.addControl(new BMap.OverviewMapControl());
+	//map.setCurrentCity("北京"); // 设置当前城市信息
+	/*
+         *  给地图添加监控 获取当前点击经纬度
+	    map.addEventListener("click", function(e){
+	        alert(e.point.lng + ", " + e.point.lat); 
+	    });
+	 */
+ 
+	addMarker(pointA, "北京邮电大学沙河校区");           // 创建标注
+ 	addMarker(pointB, "北京邮电大学西土城校区");  
+ 
+	//开始测距		
+	var polyline = new BMap.Polyline([pointA, pointB], { strokeColor: "orange", strokeWeight: 6, strokeOpacity: 0.5 });  //定义折线
+	map.addOverlay(polyline);     //添加折线到地图上
+	polyline.addEventListener("click", function () {    //监听标注事件		
+	    alert('从北京邮电大学沙河校区到北京邮电大学西土城校区的距离是：' + (map.getDistance(pointA, pointB)).toFixed(2) + ' 米。');  //获取两点距离,保留小数点后两位
+	});
+ 
+	//获取驾车路线
+	//var driving = new BMap.DrivingRoute(map, { renderOptions: { map: map, autoViewport: true} });
+	//driving.search(pointA, pointB);
+	
+	// 编写自定义函数,创建标注
+	function addMarker(point, a, b) {
+	    var marker = new BMap.Marker(point);
+	    map.addOverlay(marker);
+	    //map.removeOverlay(marker);                      // 将标注从地图中移除
+	    //marker.setAnimation(BMAP_ANIMATION_BOUNCE);     // 跳动的动画
+	    /*marker.addEventListener("click", function () {    // 监听标注事件  
+	        var opts = {         // 创建信息窗口
+	            width: 250,      // 信息窗口宽度    
+	            height: 100,     // 信息窗口高度    
+	            title: a         // 信息窗口标题   
+	        }
+	        var infoWindow = new BMap.InfoWindow(b, opts);  // 创建信息窗口对象    
+			map.openInfoWindow(infoWindow, point);          // 打开信息窗口		
+	        //alert("marker的位置是" + p.lng + "," + p.lat);   
+	    });*/
+	}
+	function test(x) {
+		alert("hello" + x);
+		return x;
+	}
+</script>
