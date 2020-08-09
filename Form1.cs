@@ -26,8 +26,8 @@ namespace innovation101
         private TopologyMap topologyMap;
         private GridMap gridMap;
         private Node[] nodes;
-        public static int start_node;
-        public static int end_node;
+        private int start_node;
+        private int end_node;
 
         private void load_map_Click(object sender, EventArgs e)
         {
@@ -60,11 +60,11 @@ namespace innovation101
             int index = this.map_list.SelectedIndex;
             if (index == 0)
             {
-                topologyMap.show_path(this.pictureBox);
+                topologyMap.show_path(this.pictureBox,start_node,end_node);
             }
             else
             {
-                gridMap.show_path(this.pictureBox);
+                gridMap.show_path(this.pictureBox,start_node,end_node);
             }
         }
 
