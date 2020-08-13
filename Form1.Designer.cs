@@ -33,6 +33,7 @@ namespace innovation101
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.map_list = new System.Windows.Forms.ComboBox();
             this.use_test = new System.Windows.Forms.TextBox();

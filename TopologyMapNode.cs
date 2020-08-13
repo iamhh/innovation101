@@ -19,5 +19,12 @@ namespace innovation101
             this.y = y;
             this.edges = edges;
         }
+
+        public TopologyMapNode(double x,double y)
+        {
+            this.x = x;
+            this.y = y;
+            this.edges = new Dictionary<int, double>();
+        }
     }
 }

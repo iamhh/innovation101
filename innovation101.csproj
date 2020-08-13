@@ -53,6 +53,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GridMap.cs" />
+    <Compile Include="GridMapExample.cs" />
     <Compile Include="TopologyMap.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />

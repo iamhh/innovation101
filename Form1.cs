@@ -25,7 +25,6 @@ namespace innovation101
 
         private TopologyMap topologyMap;
         private GridMap gridMap;
-        private Node[] nodes;
         private int start_node;
         private int end_node;
 
