@@ -33,8 +33,6 @@ namespace innovation101
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.map_list = new System.Windows.Forms.ComboBox();
             this.use_test = new System.Windows.Forms.TextBox();
             this.load_map = new System.Windows.Forms.Button();
@@ -44,17 +42,8 @@ namespace innovation101
             this.end_node_text = new System.Windows.Forms.TextBox();
             this.start_node_button = new System.Windows.Forms.Button();
             this.end_node_button = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox.Location = new System.Drawing.Point(41, 109);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(1104, 386);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
             // 
             // map_list
             // 
@@ -71,9 +60,9 @@ namespace innovation101
             // 
             // use_test
             // 
-            this.use_test.Location = new System.Drawing.Point(413, 45);
+            this.use_test.Location = new System.Drawing.Point(273, 45);
             this.use_test.Name = "use_test";
-            this.use_test.Size = new System.Drawing.Size(100, 25);
+            this.use_test.Size = new System.Drawing.Size(382, 25);
             this.use_test.TabIndex = 2;
             // 
             // load_map
@@ -142,12 +131,21 @@ namespace innovation101
             this.end_node_button.UseVisualStyleBackColor = true;
             this.end_node_button.Click += new System.EventHandler(this.end_node_button_Click);
             // 
+            // webBrowser
+            // 
+            this.webBrowser.Location = new System.Drawing.Point(28, 102);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.Size = new System.Drawing.Size(1145, 421);
+            this.webBrowser.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1351, 549);
+            this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.end_node_button);
             this.Controls.Add(this.start_node_button);
             this.Controls.Add(this.end_node_text);
@@ -157,18 +155,14 @@ namespace innovation101
             this.Controls.Add(this.load_map);
             this.Controls.Add(this.use_test);
             this.Controls.Add(this.map_list);
-            this.Controls.Add(this.pictureBox);
             this.Name = "Form1";
             this.Text = "innovation";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ComboBox map_list;
         private System.Windows.Forms.TextBox use_test;
         private System.Windows.Forms.Button load_map;
@@ -178,6 +172,7 @@ namespace innovation101
         private System.Windows.Forms.TextBox end_node_text;
         private System.Windows.Forms.Button start_node_button;
         private System.Windows.Forms.Button end_node_button;
+        private System.Windows.Forms.WebBrowser webBrowser;
     }
 }
 

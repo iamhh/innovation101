@@ -9,10 +9,17 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.IO;
+using System.Security.Permissions;  //交互JS
 
 
 namespace innovation101
 {
+
+    [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]//调用JS代码必要
+    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+
 
     public partial class Form1 : System.Windows.Forms.Form
     {
@@ -31,13 +38,14 @@ namespace innovation101
         private void load_map_Click(object sender, EventArgs e)
         {
             int index = this.map_list.SelectedIndex;
+            topologyMap.test(this.use_test);
             if (index == 0)
             {
-                topologyMap.load_map(this.pictureBox);
+                topologyMap.load_map(this.webBrowser);
             }
             else
             {
-                gridMap.load_map(this.pictureBox);
+                gridMap.load_map(this.webBrowser);
             }
         }
 
@@ -46,11 +54,11 @@ namespace innovation101
             int index = this.map_list.SelectedIndex;
             if (index == 0)
             {
-                topologyMap.show_node(this.pictureBox);
+                topologyMap.show_node(this.webBrowser);
             }
             else
             {
-                gridMap.show_node(this.pictureBox);
+                gridMap.show_node(this.webBrowser);
             }
         }
 
@@ -59,11 +67,11 @@ namespace innovation101
             int index = this.map_list.SelectedIndex;
             if (index == 0)
             {
-                topologyMap.show_path(this.pictureBox,start_node,end_node);
+                topologyMap.show_path(this.webBrowser, start_node,end_node);
             }
             else
             {
-                gridMap.show_path(this.pictureBox,start_node,end_node);
+                gridMap.show_path(this.webBrowser, start_node,end_node);
             }
         }
 

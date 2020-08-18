@@ -8,8 +8,8 @@ namespace innovation101
 {
     interface GridMap
     {
-        void load_map(System.Windows.Forms.PictureBox picture);
-        void show_node(System.Windows.Forms.PictureBox picture);
-        void show_path(System.Windows.Forms.PictureBox picture,int start_node,int end_node);
+        void load_map(System.Windows.Forms.WebBrowser webBrowser);
+        void show_node(System.Windows.Forms.WebBrowser webBrowser);
+        void show_path(System.Windows.Forms.WebBrowser webBrowser,int start_node,int end_node);
     }
 }
