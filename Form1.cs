@@ -14,16 +14,15 @@ using System.IO;
 using System.Security.Permissions;  //交互JS
 
 
-
 namespace innovation101
 {
 
     [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]//调用JS代码必要
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
 
+
     public partial class Form1 : System.Windows.Forms.Form
     {
-
         public Form1()
         {
             InitializeComponent();
@@ -33,13 +32,13 @@ namespace innovation101
 
         private TopologyMap topologyMap;
         private GridMap gridMap;
-        private Node[] nodes;
         private int start_node;
         private int end_node;
 
         private void load_map_Click(object sender, EventArgs e)
         {
             int index = this.map_list.SelectedIndex;
+            topologyMap.test(this.use_test);
             if (index == 0)
             {
                 topologyMap.load_map(this.webBrowser);
@@ -68,11 +67,11 @@ namespace innovation101
             int index = this.map_list.SelectedIndex;
             if (index == 0)
             {
-                topologyMap.show_path(this.webBrowser, start_node,end_node);
+                topologyMap.show_path(this.webBrowser, start_node, end_node);
             }
             else
             {
-                gridMap.show_path(this.webBrowser, start_node,end_node);
+                gridMap.show_path(this.webBrowser, start_node, end_node);
             }
         }
 

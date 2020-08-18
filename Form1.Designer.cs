@@ -60,9 +60,9 @@ namespace innovation101
             // 
             // use_test
             // 
-            this.use_test.Location = new System.Drawing.Point(413, 45);
+            this.use_test.Location = new System.Drawing.Point(273, 45);
             this.use_test.Name = "use_test";
-            this.use_test.Size = new System.Drawing.Size(100, 25);
+            this.use_test.Size = new System.Drawing.Size(382, 25);
             this.use_test.TabIndex = 2;
             // 
             // load_map
@@ -133,10 +133,10 @@ namespace innovation101
             // 
             // webBrowser
             // 
-            this.webBrowser.Location = new System.Drawing.Point(53, 126);
+            this.webBrowser.Location = new System.Drawing.Point(28, 100);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(1078, 386);
+            this.webBrowser.Size = new System.Drawing.Size(1145, 428);
             this.webBrowser.TabIndex = 12;
             // 
             // Form1
@@ -175,4 +175,3 @@ namespace innovation101
         private System.Windows.Forms.WebBrowser webBrowser;
     }
 }
-
