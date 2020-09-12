@@ -8,3 +8,4 @@ E:\c#\innovation101\obj\Debug\innovation101.csproj.CoreCompileInputs.cache
 E:\c#\innovation101\obj\Debug\innovation101.exe
 E:\c#\innovation101\obj\Debug\innovation101.pdb
 E:\c#\innovation101\obj\Debug\innovation101.Form1.resources
+E:\c#\innovation101\obj\Debug\innovation101.System_setting.resources

@@ -21,6 +21,8 @@ namespace innovation101
         private TopologyMapNode[] nodes;
         private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.TextBox use_test;
+        private string[] strs;
+        private bool com_path_flag = false;
 
 
         public void test(System.Windows.Forms.TextBox use_test)
@@ -34,6 +36,7 @@ namespace innovation101
             string url = Application.StartupPath + "\\baidumap.html";
             webBrowser.ScriptErrorsSuppressed = true;
             webBrowser.Navigate(url);
+            webBrowser.IsWebBrowserContextMenuEnabled = false;
         }
         public void show_node(System.Windows.Forms.WebBrowser webBrowser)
         {
@@ -43,17 +46,87 @@ namespace innovation101
                 this.webBrowser.Document.InvokeScript("addMarker", new object[] { nodes[i].x, nodes[i].y });
             }
         }
-        public void show_path(System.Windows.Forms.WebBrowser webBrowser, int start_node, int end_node)
+
+        public void fresh_node()
         {
+            this.webBrowser.Document.InvokeScript("freshNodes");
+        }
+
+        public void show_path(System.Windows.Forms.WebBrowser webBrowser)
+        {
+            int end_node = 0;
+            int start_node = int.Parse((this.webBrowser.Document.InvokeScript("getStart")).ToString());
             this.webBrowser.Document.InvokeScript("removePath");
+            set_unsafety_node();
             int[] nums = dijkstra(start_node, end_node);
-            string s = "";
             for (int i = 0; i < nums.Length - 1; i++)
             {
-                this.webBrowser.Document.InvokeScript("addPath", new object[] { nodes[nums[i]].x, nodes[nums[i]].y, nodes[nums[i + 1]].x, nodes[nums[i + 1]].y });
-                s = s + " " + nums[i];
+                this.webBrowser.Document.InvokeScript("addPath", new object[] { nums[i],nums[i+1] });
             }
+        }
+
+        public void show_navigation_path()
+        {
+            for(int i = 0; i < nodes.Length; i++)
+            {
+                foreach(int t in nodes[i].edges.Keys)
+                {
+                    this.webBrowser.Document.InvokeScript("addNavigationPath", new object[] { i, t });
+                }
+            }
+        }
+
+        public void show_com_path()
+        {
+            if (com_path_flag)
+            {
+                com_path_flag = false;
+                this.webBrowser.Document.InvokeScript("removePath");
+                return;
+            }
+            for(int i = 0; i < nodes.Length; i++)
+            {
+                for(int j = i + 1; j < nodes.Length; j++)
+                {
+                    object t = this.webBrowser.Document.InvokeScript("getDistance", new object[] { nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y });
+                    string s = t.ToString();
+                    double distance = double.Parse(s);
+                    if (distance < 150)
+                    {
+                        this.webBrowser.Document.InvokeScript("addComPath", new object[] { i, j });
+                    }
+                }
+            }
+            com_path_flag = true;
+        }
+
+        private void set_unsafety_node()
+        {
+            string s = this.webBrowser.Document.InvokeScript("getIsSafety").ToString();
+            if (s.Length == 0) return;
             this.use_test.Text = s;
+            this.strs = s.Substring(0,s.Length-1).Split('#');
+            this.use_test.Text = strs.Length.ToString();
+            foreach(string t in strs)
+            {
+                int x = int.Parse(t);
+                foreach(int a in nodes[x].edges.Keys)
+                {
+                    nodes[a].edges.Remove(x);
+                }
+            }
+        }
+
+        private void recieve_unsafety_node()
+        {
+            foreach(string s in strs)
+            {
+                int x = int.Parse(s);
+                foreach(int t in nodes[x].edges.Keys)
+                {
+                    nodes[t].edges.Add(x, nodes[x].edges[t]);
+                }
+            }
         }
 
         private void setNodes()
@@ -105,9 +178,8 @@ namespace innovation101
 
         private void setEdges(int index1, int index2)
         {
-            object t = this.webBrowser.Document.InvokeScript("getDistance", new object[] { nodes[index1].x, nodes[index1].y, nodes[index2].x, nodes[index2].y });
+            object t = this.webBrowser.Document.InvokeScript("getDistance", new object[] { nodes[index1].x,nodes[index1].y,nodes[index2].x,nodes[index2].y });
             string s = t.ToString();
-            this.use_test.Text = s;
             double distance = double.Parse(s);
             nodes[index1].edges.Add(index2, distance);
             nodes[index2].edges.Add(index1, distance);

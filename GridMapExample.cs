@@ -16,7 +16,7 @@ namespace innovation101
         {
 
         }
-        public void show_path(System.Windows.Forms.WebBrowser webBrowser, int start_node, int end_node)
+        public void show_path(System.Windows.Forms.WebBrowser webBrowser)
         {
 
         }

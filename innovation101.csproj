@@ -54,6 +54,12 @@
     </Compile>
     <Compile Include="GridMap.cs" />
     <Compile Include="GridMapExample.cs" />
+    <Compile Include="system_setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="system_setting.Designer.cs">
+      <DependentUpon>system_setting.cs</DependentUpon>
+    </Compile>
     <Compile Include="TopologyMap.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
@@ -72,6 +78,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="system_setting.resx">
+      <DependentUpon>system_setting.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

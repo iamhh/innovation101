@@ -10,6 +10,6 @@ namespace innovation101
     {
         void load_map(System.Windows.Forms.WebBrowser webBrowser);
         void show_node(System.Windows.Forms.WebBrowser webBrowser);
-        void show_path(System.Windows.Forms.WebBrowser webBrowser, int start_node,int end_node);
+        void show_path(System.Windows.Forms.WebBrowser webBrowser);
     }
 }

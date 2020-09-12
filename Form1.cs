@@ -32,34 +32,26 @@ namespace innovation101
 
         private TopologyMap topologyMap;
         private GridMap gridMap;
-        private int start_node;
-        private int end_node;
 
-        private void load_map_Click(object sender, EventArgs e)
+        private void load_map_Click(object sender, EventArgs e)  //text“载入地图”->“确认”
         {
             int index = this.map_list.SelectedIndex;
             topologyMap.test(this.use_test);
             if (index == 0)
             {
-                topologyMap.load_map(this.webBrowser);
+                //topologyMap.load_map(this.webBrowser);
+                //topologyMap.show_node(this.webBrowser);
             }
-            else
+            if (index == 1)
             {
                 gridMap.load_map(this.webBrowser);
             }
+
         }
 
         private void show_node_Click(object sender, EventArgs e)
         {
-            int index = this.map_list.SelectedIndex;
-            if (index == 0)
-            {
-                topologyMap.show_node(this.webBrowser);
-            }
-            else
-            {
-                gridMap.show_node(this.webBrowser);
-            }
+            topologyMap.show_node(this.webBrowser);
         }
 
         private void show_path_Click(object sender, EventArgs e)
@@ -67,27 +59,46 @@ namespace innovation101
             int index = this.map_list.SelectedIndex;
             if (index == 0)
             {
-                topologyMap.show_path(this.webBrowser, start_node, end_node);
+                topologyMap.show_path(this.webBrowser);
             }
-            else
+            else if (index == 1)
             {
-                gridMap.show_path(this.webBrowser, start_node, end_node);
+                gridMap.show_path(this.webBrowser);
             }
-        }
-
-        private void start_node_button_Click(object sender, EventArgs e)
-        {
-            start_node = int.Parse(this.start_node_text.Text);
-        }
-
-        private void end_node_button_Click(object sender, EventArgs e)
-        {
-            end_node = int.Parse(this.end_node_text.Text);
         }
 
         private void map_list_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void show_com_path_Click(object sender, EventArgs e)
+        {
+            topologyMap.show_com_path();
+        }
+
+        private void restar_Click(object sender, EventArgs e)
+        {
+            int index = this.map_list.SelectedIndex;
+            if (index == 0)
+            {
+                topologyMap.fresh_node();
+            }
+            else if (index == 1)
+            {
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)  //新增载入地图
+        {
+            topologyMap.load_map(this.webBrowser);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+            System_setting st = new System_setting();
+            st.ShowDialog();
         }
     }
 }
